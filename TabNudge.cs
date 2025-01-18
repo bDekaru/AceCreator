@@ -43,7 +43,12 @@ namespace AceCreator
 
         public HudButton ButtonNudgeHere { get; set; }
         public HudButton ButtonRotateHere { get; set; }
-        
+        public HudButton ButtonNudgeValueInc { get; set; }
+        public HudButton ButtonNudgeValueDec { get; set; }
+        public HudButton ButtonNudgeValueLargeInc { get; set; }
+        public HudButton ButtonNudgeValueLargeDec { get; set; }
+        public HudButton ButtonNudgeValueReset { get; set; }
+
 
 
         public HudTextBox TextboxFreeRotate { get; set; }
@@ -261,6 +266,81 @@ namespace AceCreator
             {
                 Globals.ButtonCommand = "/rotate here";
                 CommandWait(sender, e);
+            }
+            catch (Exception ex) { Util.LogError(ex); }
+        }
+
+        public void ButtonNudgeValueInc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (double.TryParse(TextboxNudgeValueCustom.Text, out var value))
+                {
+                    if (value < 0.1)
+                        TextboxNudgeValueCustom.Text = $"{value + 0.01}";
+                    else
+                        TextboxNudgeValueCustom.Text = $"{value + 0.1}";
+                }
+                else
+                    TextboxNudgeValueCustom.Text = "0.5";
+            }
+            catch (Exception ex) { Util.LogError(ex); }
+        }
+
+        public void ButtonNudgeValueDec_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (double.TryParse(TextboxNudgeValueCustom.Text, out var value))
+                {
+                    if(value > 0.01 && value <= 0.1)
+                        TextboxNudgeValueCustom.Text = $"{value - 0.01}";
+                    else if(value > 0.1)
+                        TextboxNudgeValueCustom.Text = $"{value - 0.1}";
+                }
+                else
+                    TextboxNudgeValueCustom.Text = "0.5";
+            }
+            catch (Exception ex) { Util.LogError(ex); }
+        }
+
+        public void ButtonNudgeValueLargeInc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (double.TryParse(TextboxNudgeValueCustom.Text, out var value))
+                {
+                    if (value < 0.1)
+                        TextboxNudgeValueCustom.Text = $"0.5";
+                    else
+                        TextboxNudgeValueCustom.Text = $"{value + 0.5}";
+                }
+                else
+                    TextboxNudgeValueCustom.Text = "0.5";
+            }
+            catch (Exception ex) { Util.LogError(ex); }
+        }
+
+        public void ButtonNudgeValueLargeDec_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (double.TryParse(TextboxNudgeValueCustom.Text, out var value))
+                {
+                    if (value > 0.5)
+                        TextboxNudgeValueCustom.Text = $"{value - 0.5}";
+                }
+                else
+                    TextboxNudgeValueCustom.Text = "0.5";
+            }
+            catch (Exception ex) { Util.LogError(ex); }
+        }
+
+        public void ButtonNudgeValueReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TextboxNudgeValueCustom.Text = "0.5";
             }
             catch (Exception ex) { Util.LogError(ex); }
         }

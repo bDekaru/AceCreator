@@ -87,7 +87,7 @@ namespace AceCreator
             string assemblyFolder = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo( assemblyFolder+ @"\AceCreator.dll");
             //view.Title = "ACE Content Creator - Version " + typeof(AceCreator).Assembly.GetName().Version;
-            view.Title = "ACE Content Creator - Version " + myFileVersionInfo.FileVersion;
+            view.Title = "ACE Content Creator - Version " + myFileVersionInfo.FileVersion + " Dekaru Fork";
 
             // In order to have some sort of organization and to keep the clutter down, 
             // the varibles for each tab are declared in their corresponding TabFiles, along with the other control events.
@@ -227,13 +227,28 @@ namespace AceCreator
             ButtonRotateHere = view != null ? (HudButton)view["ButtonRotateHere"] : new HudButton();
             ButtonRotateHere.Hit += new EventHandler(ButtonRotateHere_Click);
 
+            ButtonNudgeValueInc = view != null ? (HudButton)view["ButtonNudgeValueInc"] : new HudButton();
+            ButtonNudgeValueInc.Hit += new EventHandler(ButtonNudgeValueInc_Click);
+
+            ButtonNudgeValueDec = view != null ? (HudButton)view["ButtonNudgeValueDec"] : new HudButton();
+            ButtonNudgeValueDec.Hit += new EventHandler(ButtonNudgeValueDec_Click);
+
+            ButtonNudgeValueLargeInc = view != null ? (HudButton)view["ButtonNudgeValueLargeInc"] : new HudButton();
+            ButtonNudgeValueLargeInc.Hit += new EventHandler(ButtonNudgeValueLargeInc_Click);
+
+            ButtonNudgeValueLargeDec = view != null ? (HudButton)view["ButtonNudgeValueLargeDec"] : new HudButton();
+            ButtonNudgeValueLargeDec.Hit += new EventHandler(ButtonNudgeValueLargeDec_Click);
+
+            ButtonNudgeValueReset = view != null ? (HudButton)view["ButtonNudgeValueReset"] : new HudButton();
+            ButtonNudgeValueReset.Hit += new EventHandler(ButtonNudgeValueReset_Click);
 
 
 
 
 
-        // ***** LandBlocks Tab *****
-        ChoiceLandblockJSON = (HudCombo)view["ChoiceLandblockJSON"];
+
+            // ***** LandBlocks Tab *****
+            ChoiceLandblockJSON = (HudCombo)view["ChoiceLandblockJSON"];
             //ChoiceLandblockJSON.Change += new EventHandler(ChoiceLandblockJSON_Change);
 
             ButtonImportLandblockJSON = view != null ? (HudButton)view["ButtonImportLandblockJSON"] : new HudButton();
